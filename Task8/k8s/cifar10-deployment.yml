@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cifar10-deployment
+  labels:
+    app: cifar10
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cifar10
+  template:
+    metadata:
+      labels:
+        app: cifar10
+    spec:
+      containers:
+        - name: cifar10
+          image: cr.yandex/crpl2ivjm7kaokv219ge/cifar10-fastapi:latest
+          env:
+          - name: MODEL_NAME
+            value: "https://storage.yandexcloud.net/kpd-public-bucket/cifar10-model.zip"
+          ports:
+            - containerPort: 8080

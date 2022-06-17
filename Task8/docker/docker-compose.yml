@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  fastapi:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: cr.yandex/crpl2ivjm7kaokv219ge/cifar10-fastapi:latest
+    ports:
+      - "8080:8080"
+    environment:
+      MODEL_NAME: "https://storage.yandexcloud.net/kpd-public-bucket/cifar10-model.zip"
