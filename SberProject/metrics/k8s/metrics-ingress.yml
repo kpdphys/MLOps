@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: metrics-ingress
+  namespace: metrics
+spec:
+  ingressClassName: nginx-metrics
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: metrics-service
+                port:
+                  number: 80
+          - path: /searches
+            pathType: Prefix
+            backend:
+              service:
+                name: metrics-service
+                port:
+                  number: 80
+          - path: /metrics
+            pathType: Prefix
+            backend:
+              service:
+                name: metrics-service
+                port:
+                  number: 80

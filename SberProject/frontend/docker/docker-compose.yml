@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  frontend_service:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: cr.yandex/crpl2ivjm7kaokv219ge/frontend_service:latest

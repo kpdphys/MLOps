@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="http://FRONTEND_HOST/js/script.js"></script>
+        <style type="text/css">
+            input[type=submit] {
+                height: 20pt;
+            }
+
+            input[type=text] {
+                width: 30%;
+                height: 20pt;
+                padding-left: 10px;
+                border: 1px dotted #999;
+                border-radius: 5px;
+                background: #f1f1f1;
+                -webkit-appearance: none;
+            }
+        </style>
+        <title>Система интеллектуального поиска по порталу "СберСпасибо"</title>
+    </head>
+    <body>
+        <h3>
+            Система интеллектуального поиска по порталу "СберСпасибо"
+        </h3>
+        <div id="form">
+            <form class="form-inline" name="search" onsubmit="getSearchResults();return false;">
+                <p>Введите поисковый запрос:</p>
+                <input type="text" id="query"
+                placeholder="Введите фразу для поиска" required
+                style="font-family:Arial, FontAwesome" />
+                <input type="submit" value="Поиск">
+            </form>
+        </div>
+        <div class="result-wrapper"><ol id="result"></ol></div>
+    </body>
+</html>

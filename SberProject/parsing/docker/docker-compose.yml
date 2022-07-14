@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  parsing_service:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: cr.yandex/crpl2ivjm7kaokv219ge/parsing_service:latest

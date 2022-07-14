@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metrics-deployment
+  namespace: metrics
+  labels:
+    app: metrics
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: metrics
+  template:
+    metadata:
+      labels:
+        app: metrics
+    spec:
+      containers:
+        - name: metrics
+          image: cr.yandex/crpl2ivjm7kaokv219ge/metrics_service:latest
+          env:
+            - name: MONGO_URIS
+              value: "rc1b-oof2hg03f6fimxa0.mdb.yandexcloud.net:27018"
+            - name: MONGO_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mongosecret
+                  key: username
+            - name: MONGO_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: mongosecret
+                  key: password
+          ports:
+            - containerPort: 8080
+

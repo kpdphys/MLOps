@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: search-deployment
+  namespace: search
+  labels:
+    app: search
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: search
+  template:
+    metadata:
+      labels:
+        app: search
+    spec:
+      containers:
+        - name: search
+          image: cr.yandex/crpl2ivjm7kaokv219ge/search_service:latest
+          env:
+            - name: WEAVIATE_HOST
+              value: "10.2.197.184"
+            - name: WEAVIATE_PORT
+              value: "80"
+          ports:
+            - containerPort: 8080
