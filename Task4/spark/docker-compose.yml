@@ -1,0 +1,31 @@
+version: "2"
+
+services:
+  spark:
+    image: docker.io/bitnami/spark:3.2.1
+    environment:
+      - SPARK_MODE=master
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+    user: root
+    ports:
+      - "8087:8080"
+    volumes:
+      - "./spark_conf/spark-defaults.conf:/opt/bitnami/spark/conf/spark-defaults.conf"
+      - "./spark_conf/jars_dir/:/opt/bitnami/spark/ivy:z"
+      - "./spark_data/:/tmp/kpd"
+  spark-worker:
+    image: docker.io/bitnami/spark:3.2.1
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark:7077
+      - SPARK_WORKER_MEMORY=2G
+      - SPARK_WORKER_CORES=1
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+    volumes:
+      - ./:/tmp/kpd
