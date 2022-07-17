@@ -1,0 +1,8 @@
+fastapi==0.78.0
+pydantic==1.9.1
+uvicorn[standard]==0.17.6
+tensorflow==2.9.1
+mlflow==1.27.0
+boto3==1.24.31
+pillow==9.1.1
+python-multipart==0.0.5

@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  fastapi:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: cifar10-service:latest
+    ports:
+      - "9090:8080"
+    environment:
+      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
+      AWS_DEFAULT_REGION: "ru-central1"
+      MLFLOW_S3_ENDPOINT_URL: "https://storage.yandexcloud.net"
+      MODEL_PATH: "s3://kpd-public-bucket/mlflow/1/dc04e754f8ce40aaad1305c55a838a40/artifacts/model"
